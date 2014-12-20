@@ -3,40 +3,39 @@ Reproducible Pitch Presentation
 author: Steven Rankine
 date:   21 December 2014
 
-First Slide
+![](logo2.jpg)
+![](logo2.jpg)
+
+Overview
 ========================================================
 
-The User Analysis Shiny application can be used to understand how users are connecting to a web application. This feedback can be used for the following.
+Developed a User Analysis Shiny application that can be used to understand how users are connecting to a web application. This feedback can be used for the following.
 
 - Understand peak usage
 - Optimize Web Application for most users
-- Bullet 3
+- Identify cyclical and seasonal trends
+- Potential for real-time updates and analysis
 
-Slide With Code
+Link to application: http://sdr4w.shinyapps.io/ShinyApp/
+
+Code from server.R
 ========================================================
 
-
-```r
-library(shiny);
-library(RODBC);
-library(sqldf);
-library(ggplot2);
-
-ch <- odbcConnect("MySQL CFBLNet");
-df <- sqlQuery(ch,"SELECT timestamp,userBrowser,userPlatform,actionType FROM _log WHERE actionSubType='LOGIN'");
-odbcClose(ch);
-str(df);
+```
+            timestamp userBrowser userPlatform
+1 2012-02-06 10:06:35     Unknown      Unknown
+2 2012-02-06 11:43:02     Unknown      Unknown
+3 2012-02-06 12:06:55     Unknown      Unknown
+4 2012-02-06 12:10:02     Unknown      Unknown
+5 2012-02-06 13:07:33     Unknown      Unknown
+6 2012-02-06 14:05:11     Unknown      Unknown
 ```
 
-```
-'data.frame':	4123 obs. of  4 variables:
- $ timestamp   : POSIXct, format: "2012-02-06 10:06:35" "2012-02-06 11:43:02" ...
- $ userBrowser : Factor w/ 4 levels "","Google Chrome",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ userPlatform: Factor w/ 3 levels "","mac","windows": 1 1 1 1 1 1 1 1 1 1 ...
- $ actionType  : Factor w/ 2 levels "","ACCESS": 2 2 2 2 2 2 2 2 2 2 ...
-```
+Code from server.R
+========================================================
+
 
 Slide With Plot
 ========================================================
 
-![plot of chunk unnamed-chunk-2](Pitch-figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-3](Pitch-figure/unnamed-chunk-3-1.png) 
