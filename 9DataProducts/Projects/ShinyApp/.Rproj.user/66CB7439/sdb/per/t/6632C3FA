@@ -1,0 +1,16 @@
+{
+    "contents" : "Reproducible Pitch Presentation\n========================================================\nauthor: Steven Rankine\ndate:   21 December 2014\n\nFirst Slide\n========================================================\n\nThe User Analysis Shiny application can be used to understand how users are connecting to a web application. This feedback can be used for the following.\n\n- Understand peak usage\n- Optimize Web Application for most users\n- Bullet 3\n\nSlide With Code\n========================================================\n\n```{r}\nlibrary(shiny);\nlibrary(RODBC);\nlibrary(sqldf);\nlibrary(ggplot2);\n\nch <- odbcConnect(\"MySQL CFBLNet\");\ndf <- sqlQuery(ch,\"SELECT timestamp,userBrowser,userPlatform,actionType FROM _log WHERE actionSubType='LOGIN'\");\nodbcClose(ch);\nstr(df);\n```\n\nSlide With Plot\n========================================================\n\n```{r, echo=FALSE}\nplot(cars)\n```\n",
+    "created" : 1418870060458.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "161313591",
+    "id" : "6632C3FA",
+    "lastKnownWriteTime" : 1418872528,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/ShinyApp/Pitch/Pitch.Rpres",
+    "project_path" : "Pitch/Pitch.Rpres",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_presentation"
+}

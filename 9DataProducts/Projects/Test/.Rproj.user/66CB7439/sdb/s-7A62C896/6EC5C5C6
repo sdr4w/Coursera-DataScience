@@ -1,0 +1,16 @@
+{
+    "contents" : "---\ntitle       : Test Title\nsubtitle    : Test Sub-title\nauthor      : Steven Rankine\njob         : General Engineer\nframework   : io2012        # {io2012, html5slides, shower, dzslides, ...}\nhighlighter : highlight.js  # {highlight.js, prettify, highlight}\nhitheme     : tomorrow      # \nwidgets     : []            # {mathjax, quiz, bootstrap}\nmode        : selfcontained # {standalone, draft}\nknit        : slidify::knit2slides\n---\n\n## Read-And-Delete\n\n1. Edit YAML front matter\n2. Write using R Markdown\n3. Use an empty line followed by three dashes to separate slides!\n\n--- .class #id \n\n## Slide 2\n\nTest Slide 2\n\n---\n",
+    "created" : 1418305127853.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4070040966",
+    "id" : "6EC5C5C6",
+    "lastKnownWriteTime" : 1418404076,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/test/first_deck/index.Rmd",
+    "project_path" : "first_deck/index.Rmd",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

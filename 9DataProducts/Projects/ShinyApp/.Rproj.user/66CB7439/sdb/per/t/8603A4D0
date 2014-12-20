@@ -1,0 +1,16 @@
+{
+    "contents" : "# This is the user-interface definition of a Shiny web application.\n\nlibrary(shiny);\nshinyUI(fluidPage(\n  # Application title\n  headerPanel(\"Website User Analysis\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n        helpText(HTML(\"<h5>Analyze the 2012-2014 User login data from CFBLNet CPT web application.</h5>\")), hr(),\n        selectInput(\"which\", HTML(\"(<b>STEP 1</b>) Choose Feature to Analyze:\"), choices = c(\"Login\", \"Browser\", \"Platform\")), hr(),\n        sliderInput(\"bins\",  HTML(\"(<b>STEP 2</b>) Adjust Number of Bins to Use:\"), min=1, max=50, value=6), hr(),\n        dateRangeInput(\"dateRng\", HTML(\"(<b>STEP 3</b>) Adjust Date Range:\"), start=\"2014-06-01\", min=\"2011-01-01\", max=\"2015-01-01\"),\n        width=5\n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n        plotOutput(\"distPlot\"), hr(),\n        h3(textOutput(\"Data\")),\n        tableOutput(\"table\"),\n        width=7\n    ),\n\n    position=\"right\",\n    fluid=TRUE\n  )\n))",
+    "created" : 1418869945916.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1683010336",
+    "id" : "8603A4D0",
+    "lastKnownWriteTime" : 1419021030,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/ShinyApp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

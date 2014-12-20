@@ -1,0 +1,17 @@
+{
+    "contents" : "library(RODBC);\nlibrary(sqldf);\n\nch <- odbcConnect(\"MySQL CFBLNet\");\ndf <- sqlQuery(ch,\"SELECT timestamp,userBrowser,userPlatform,actionType FROM _log WHERE actionSubType='LOGIN'\");\ndf$timestamp <- as.character(df$timestamp);\nodbcClose(ch);\nwrite.table(df, file=\"userlogin.dat\", append=FALSE);\n\ndf <- read.table(file=\"userlogin.dat\");\nlevels(df$userBrowser)  <- c(levels(df$userBrowser), \"Unknown\");\nlevels(df$userPlatform) <- c(levels(df$userPlatform),\"Unknown\");\ndf$timestamp                         <- as.character(df$timestamp);\ndf$date                              <- as.Date(strsplit(df$timestamp,\" \")[[1]][1]);\ndf$time                              <- strsplit(df$timestamp,\" \")[[1]][2];\ndf$userBrowser[df$userBrowser==\"\"]   <- \"Unknown\";\ndf$userPlatform[df$userPlatform==\"\"] <- \"Unknown\";\n",
+    "created" : 1418909799361.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "969799364",
+    "id" : "70374354",
+    "lastKnownWriteTime" : 1419017338,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/ShinyApp/ShinyApp.R",
+    "project_path" : "ShinyApp.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

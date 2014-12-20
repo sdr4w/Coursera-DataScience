@@ -1,0 +1,16 @@
+{
+    "contents" : "# This is the server logic for a Shiny web application.\n\nlibrary(shiny);\nlibrary(RODBC);\nlibrary(sqldf);\nlibrary(ggplot2);\n\nch <- odbcConnect(\"MySQL CFBLNet\");\ndf <- sqlQuery(ch,\"SELECT timestamp,userBrowser,userPlatform,actionType FROM _log WHERE actionSubType='LOGIN'\");\nodbcClose(ch);\n\nshinyServer(function(input, output) {\n\n  dataset <- reactive({ subset(df, timestamp >= input$dateBeg & timestamp <= input$dateEnd) })\n  output$title  <- renderPrint({ paste(\"<center><b>\",input$dateRng[1],\"to\",input$dateRng[2],\"</b></center>\",sep=\" \") })\n  output$table1 <- renderTable({\n      tmp <- df[,1:3];\n      tmp$timestamp <- as.character(tmp$timestamp);\n      head(tmp);\n  })\n  output$distPlot <- renderPlot({\n      tmp  <- switch(input$which, \"Login\" = df[,1],  \"Browser\" = df[,2], \"Platform\" = df[,3]);\n      if( input$which == \"Login\" ) {\n          bins <- seq(min(tmp), max(tmp), length.out=input$bins+1);  # generate bins based on input$bins from ui.R\n          hist(tmp, breaks=bins, col='darkgray', border='white');    # draw the histogram with the specified number of bins\n      } else if( input$which == \"Browser\" ) {\n          ggp <- ggplot(data.frame(tmp),aes(x=tmp));\n          ggp + geom_histogram(fill=\"lightblue\",aes(y=..count../sum(..count..))) + ggtitle(\"Type of Browser Used\") + xlab(\"Browser Type\") + ylab(\"Percentage\");\n      } else {\n          ggp <- ggplot(data.frame(tmp),aes(x=tmp));\n          ggp + geom_histogram(fill=\"black\",aes(y=..count../sum(..count..))) + ggtitle(\"Type of OS Platform\") + xlab(\"Platform Type\") + ylab(\"Percentage\");\n#            ggp <- ggplot(df, aes(x=factor(1), fill=factor(df$userBrowser))) + geom_bar(width = 1);\n#            ggp + coord_polar(theta = \"y\");\n      }\n  }, width=600)\n\n})\n\n# library(shiny);\n# library(ggplot2);\n#\n# shinyServer(function(input, output) {\n#\n#     dataset <- reactive( function() {\n#         diamonds[sample(nrow(diamonds), input$sampleSize),]\n#     })\n#\n#     output$plot <- reactivePlot(function() {\n#\n#         p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point()\n#\n#         if (input$color != 'None')\n#             p <- p + aes_string(color=input$color)\n#\n#         facets <- paste(input$facet_row, '~', input$facet_col)\n#         if (facets != '. ~ .')\n#             p <- p + facet_grid(facets)\n#\n#         if (input$jitter)\n#             p <- p + geom_jitter()\n#         if (input$smooth)\n#             p <- p + geom_smooth()\n#\n#         print(p)\n#\n#     }, height=700)\n#\n# })\n",
+    "created" : 1417839770642.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3631440849",
+    "id" : "C3D038FE",
+    "lastKnownWriteTime" : 1418868298,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/test/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

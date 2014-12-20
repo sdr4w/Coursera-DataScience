@@ -1,0 +1,16 @@
+{
+    "contents" : "# This is the user-interface definition of a Shiny web application.\n\nlibrary(shiny);\n\nshinyUI(fluidPage(\n\n  # Application title\n#   titlePanel(\"Website User Login Data\"),\n  headerPanel(\"Website User Login Data\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"bins\", \"Number of bins:\", min = 1, max = 50, value = 30),\n      selectInput(\"which\", \"Choose a dataset:\", choices = c(\"Login\", \"Browser\", \"Platform\")),\n      hr(),\n      dateRangeInput(\"dateRng\",\"Date Range\",start=\"2014-06-01\",min=\"2011-01-01\",max=\"2015-01-01\"),\n      helpText(\"Data from CFBLNet CPT website.\")\n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n#         htmlOutput(\"title\"),\n#         hr(),\n        plotOutput(\"distPlot\"),\n        tableOutput(\"table1\"),\n        plotOutput(\"pieChart\")\n    )\n  )\n))",
+    "created" : 1417839766843.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3976893881",
+    "id" : "AE241FFD",
+    "lastKnownWriteTime" : 1418868216,
+    "path" : "J:/Documents/Projects/DataScience/9DataProducts/Projects/test/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
