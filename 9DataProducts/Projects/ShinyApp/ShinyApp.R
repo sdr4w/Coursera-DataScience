@@ -5,9 +5,9 @@ ch <- odbcConnect("MySQL CFBLNet");
 df <- sqlQuery(ch,"SELECT timestamp,userBrowser,userPlatform,actionType FROM _log WHERE actionSubType='LOGIN'");
 df$timestamp <- as.character(df$timestamp);
 odbcClose(ch);
-write.table(df, file="userlogin.dat", append=FALSE);
+write.table(df, file="Data/userlogin.dat", append=FALSE);
 
-df <- read.table(file="userlogin.dat");
+df <- read.table(file="Data/userlogin.dat");
 levels(df$userBrowser)  <- c(levels(df$userBrowser), "Unknown");
 levels(df$userPlatform) <- c(levels(df$userPlatform),"Unknown");
 df$timestamp                         <- as.character(df$timestamp);

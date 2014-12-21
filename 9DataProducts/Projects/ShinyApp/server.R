@@ -4,7 +4,7 @@ library(shiny);
 library(sqldf);
 library(ggplot2);
 
-df <- read.table(file="userlogin.dat");
+df <- read.table(file="Data/userlogin.dat");
 levels(df$userBrowser)  <- c(levels(df$userBrowser), "Unknown");
 levels(df$userPlatform) <- c(levels(df$userPlatform),"Unknown");
 df$timestamp                         <- as.character(df$timestamp);
@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
   output$table <- renderTable({
       tmp <- df[filter(), ];
       if(dim(tmp)[1] != 0){
-          head(tmp[,2:6]);
+          tmp[,2:6];
       }
   })
   output$distPlot <- renderPlot({

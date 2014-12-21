@@ -1,24 +1,35 @@
-Reproducible Pitch Presentation
+Pitch Presentation
 ========================================================
 author: Steven Rankine
 date:   21 December 2014
 
-![](logo2.jpg)
-![](logo2.jpg)
+
+![](logo2.jpg) ![](logo2.jpg)
 
 Overview
 ========================================================
 
-Developed a User Analysis Shiny application that can be used to understand how users are connecting to a web application. This feedback can be used for the following.
+Developed a User Analysis Shiny application that can be used to understand how and when users are connecting to a another website application. This feedback can be used to impact the following.
 
 - Understand peak usage
-- Optimize Web Application for most users
 - Identify cyclical and seasonal trends
+- Understand who is accessing the web application
+- Optimize Web Application for most users
 - Potential for real-time updates and analysis
 
 Link to application: http://sdr4w.shinyapps.io/ShinyApp/
 
-Code from server.R
+Simple Interface
+========================================================
+The application is easy to use.  There are three steps.
+
+- __STEP 1__: Select feature to analyze
+- __STEP 2__: Select the number of category bins (optional)
+- __STEP 3__: Select range of dates to analyze
+
+A histogram of that feature will be automatcally generated for analysis.
+
+Data Used to Feed Web Appication
 ========================================================
 ```{r eval=TRUE,echo=FALSE}
 # This is the server logic for a
@@ -36,18 +47,13 @@ df$date <- as.character(ts[[1]][1]);
 df$time <- ts[[1]][2];
 df$userBrowser[df$userBrowser==""] <- "Unknown";
 df$userPlatform[df$userPlatform==""] <- "Unknown";
-head(df[,1:3]);
+str(df[,1:3]);
 ```
 
-Code from server.R
+Example Histgram Produced
 ========================================================
-```{r eval=TRUE}
-```
-
-Slide With Plot
-========================================================
-
-```{r, echo=FALSE}
+This histogram shows usage over the last 6 months with a peak in the month of September.
+```{r, echo=FALSE, fig.align='center'}
 filter <- df$timestamp>="2014-06-01" & df$timestamp<="2014-12-31";
 tmp <- as.Date(df[filter,1]);
 hist(tmp, col="darkgray", border='white', breaks=6,
